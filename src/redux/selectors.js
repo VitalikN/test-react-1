@@ -9,12 +9,6 @@ export const selectFilterValue = state => state.filter;
 // export const selectVisibleProducts = createSelector(
 //   [selectProducts, selectFilterValue],
 //   (products, filter) => {
-//     const normalizedFilter = filter;
-//     //   .toLowerCase();
-//     return products.filter(({ name }) =>
-//       name
-//         // .toLowerCase()
-//         .includes(normalizedFilter)
-//     );
+//     return products.filter(product => product.includes(filter));
 //   }
 // );
