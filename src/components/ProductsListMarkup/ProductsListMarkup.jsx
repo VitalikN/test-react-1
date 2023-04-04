@@ -17,9 +17,11 @@ export const ProductsListMarkup = ({ products }) => {
   const location = useLocation();
 
   const dispatch = useDispatch();
-  const handleRemove = productId =>
-    dispatch(removeProduct(console.log(productId)));
 
+  const handleRemove = productId => {
+    console.log(productId);
+    dispatch(removeProduct(productId));
+  };
   return (
     <div>
       <List>
@@ -27,7 +29,7 @@ export const ProductsListMarkup = ({ products }) => {
           <Item key={id}>
             <StyledLink
               id={`${id}`}
-              to={`/products/${id}-${title}`}
+              to={`/products/${id}`}
               state={{ from: location }}
             >
               <Img src={`${images[0]}`} alt={title} width="200px" />

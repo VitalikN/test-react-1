@@ -1,10 +1,18 @@
 import { BackLink } from 'components/BackLink/BackLink';
-import { useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useLocation, useParams } from 'react-router-dom';
+import { selectProducts } from 'redux/selectors';
 
 export const ProductDetails = () => {
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/';
-  // const { productId } = useParams();
+  const { productId } = useParams();
+  const products = useSelector(selectProducts);
+
+  console.log('productId', productId);
+  console.log('products', products);
+  const visibleProduct = products.filter(product => product.id === productId);
+  console.log(visibleProduct);
 
   return (
     <div>
