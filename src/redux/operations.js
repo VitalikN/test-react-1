@@ -26,13 +26,26 @@ export const addProduct = createAsyncThunk(
     }
   }
 );
+// export const removeProduct = createAsyncThunk(
+//   'products/removeProduct',
+//   async (productId, thunkAPI) => {
+//     try {
+//       const { data } = await axios.delete(`/products/${productId}`);
+//       // console.log(data);
+//       return data.product;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
+
 export const removeProduct = createAsyncThunk(
   'products/removeProduct',
   async (productId, thunkAPI) => {
     try {
-      const { data } = await axios.delete(`/products/${productId}`);
-      // console.log(data);
-      return data.products;
+      const { data } = await axios.delete(`/${productId}`);
+
+      return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
