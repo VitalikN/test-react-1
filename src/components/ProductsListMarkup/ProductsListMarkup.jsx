@@ -15,11 +15,9 @@ import { removeProduct } from 'redux/operations';
 
 export const ProductsListMarkup = ({ products }) => {
   const location = useLocation();
-
   const dispatch = useDispatch();
 
   const handleRemove = productId => {
-    console.log(productId);
     dispatch(removeProduct(productId));
   };
   return (

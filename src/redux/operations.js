@@ -26,18 +26,6 @@ export const addProduct = createAsyncThunk(
     }
   }
 );
-// export const removeProduct = createAsyncThunk(
-//   'products/removeProduct',
-//   async (productId, thunkAPI) => {
-//     try {
-//       const { data } = await axios.delete(`/products/${productId}`);
-//       // console.log(data);
-//       return data.product;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
 
 export const removeProduct = createAsyncThunk(
   'products/removeProduct',
@@ -58,7 +46,7 @@ export const productDetails = createAsyncThunk(
     try {
       const { data } = await axios.get(`/products/${productId}`);
 
-      return data.products;
+      return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

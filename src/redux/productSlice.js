@@ -43,9 +43,6 @@ const productsSlice = createSlice({
     [removeProduct.fulfilled](state, action) {
       state.isLoading = false;
       state.error = null;
-
-      console.log(state.payload);
-
       const index = state.items.findIndex(
         product => product.id === action.payload.id
       );
@@ -56,9 +53,7 @@ const productsSlice = createSlice({
     [productDetails.fulfilled](state, action) {
       state.isLoading = false;
       state.error = null;
-      // const index = state.items.findIndex(
-      //   product => product.id === action.payload.id
-      // );
+
       state.items = action.payload;
     },
   },
