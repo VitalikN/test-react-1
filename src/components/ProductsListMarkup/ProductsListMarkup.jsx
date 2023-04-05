@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom';
-import { MdDeleteForever } from 'react-icons/md';
+import { MdClear } from 'react-icons/md';
 
 import {
   Img,
@@ -9,6 +9,7 @@ import {
   Subject,
   Title,
   Btn,
+  Chip,
 } from './ProductsListMarkup.styled';
 import { useDispatch } from 'react-redux';
 import { removeProduct } from 'redux/operations';
@@ -25,6 +26,11 @@ export const ProductsListMarkup = ({ products }) => {
       <List>
         {products.map(({ id, brand, images, title }) => (
           <Item key={id}>
+            <Btn type="button" onClick={() => handleRemove(id)}>
+              <Chip>
+                <MdClear />
+              </Chip>
+            </Btn>
             <StyledLink
               id={`${id}`}
               to={`/products/${id}`}
@@ -35,9 +41,6 @@ export const ProductsListMarkup = ({ products }) => {
               <Title>{brand}</Title>
               <Subject> {title}</Subject>
             </StyledLink>
-            <Btn type="button" onClick={() => handleRemove(id)}>
-              <MdDeleteForever />
-            </Btn>
           </Item>
         ))}
       </List>

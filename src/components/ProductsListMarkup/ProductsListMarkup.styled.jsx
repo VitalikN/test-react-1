@@ -13,6 +13,7 @@ export const List = styled.ul`
   margin-right: auto;
 `;
 export const Item = styled.li`
+  position: relative;
   background: #0f0f0f;
   padding: 18px;
   width: 280px;
@@ -88,15 +89,22 @@ export const Text = styled.p`
   }
 `;
 export const Btn = styled.button`
+  position: absolute;
+  right: 0;
+  top: 0;
   background-color: #0f0f0f;
   border: none;
-  color: #888;
+  border-radius: 50%;
   padding: 10px;
+`;
+
+export const Chip = styled.span`
+  background-color: #0f0f0f;
+
+  color: #888;
   font-size: 25px;
-  margin-left: 10px;
-  transition: all 350ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color 350ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover {
     color: #fff;
-    transform: scale(1.2);
   }
 `;
