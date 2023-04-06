@@ -13,6 +13,7 @@ import {
 export const ProductDetails = () => {
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/';
+
   const { productId } = useParams();
   const products = useSelector(selectProducts);
 

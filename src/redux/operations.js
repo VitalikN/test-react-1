@@ -27,6 +27,22 @@ export const addProduct = createAsyncThunk(
   }
 );
 
+// fetch('https://dummyjson.com/products/search?q=phone');
+
+export const searchProduct = createAsyncThunk(
+  'products/searchProduct',
+  async (searchProduct, thunkAPI) => {
+    try {
+      const { data } = await axios.get(`/search?q=${searchProduct}`);
+      console.log(data);
+      console.log('data.products', data.products);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const removeProduct = createAsyncThunk(
   'products/removeProduct',
   async (productId, thunkAPI) => {

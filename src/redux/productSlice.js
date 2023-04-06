@@ -4,6 +4,7 @@ import {
   addProduct,
   removeProduct,
   productDetails,
+  searchProduct,
 } from './operations';
 
 const handlePending = state => {
@@ -30,6 +31,12 @@ const productsSlice = createSlice({
     [removeProduct.pending]: handlePending,
     [removeProduct.rejected]: handleRejected,
 
+    [productDetails.pending]: handlePending,
+    [productDetails.rejected]: handleRejected,
+
+    [searchProduct.pending]: handlePending,
+    [searchProduct.rejected]: handleRejected,
+
     [fetchProducts.fulfilled](state, action) {
       state.isLoading = false;
       state.error = null;
@@ -48,12 +55,15 @@ const productsSlice = createSlice({
       );
       state.items.splice(index, 1);
     },
-    [productDetails.pending]: handlePending,
-    [productDetails.rejected]: handleRejected,
+
     [productDetails.fulfilled](state, action) {
       state.isLoading = false;
       state.error = null;
-
+      state.items = action.payload;
+    },
+    [searchProduct.fulfilled](state, action) {
+      state.isLoading = false;
+      state.error = null;
       state.items = action.payload;
     },
   },

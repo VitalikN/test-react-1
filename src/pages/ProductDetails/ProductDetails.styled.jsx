@@ -2,9 +2,13 @@ import styled from '@emotion/styled';
 
 export const Container = styled.div`
   display: flex;
+  justify-content: center;
   padding: 25px 20px;
   margin-top: 10px;
   background: #0f0f0f;
+  /* width: 100%; */
+  /* height: 100%; */
+
   @media (max-width: 768px) {
     flex-direction: column;
     justify-content: center;
@@ -13,7 +17,7 @@ export const Container = styled.div`
 `;
 
 export const Img = styled.img`
-  width: 300px;
+  width: 400px;
   height: 400px;
   border-radius: 10px;
 
@@ -24,7 +28,7 @@ export const Img = styled.img`
   }
   @media (max-width: 768px) {
     width: 200px;
-    height: 300px;
+    height: 200px;
   }
 `;
 export const Title = styled.h2`

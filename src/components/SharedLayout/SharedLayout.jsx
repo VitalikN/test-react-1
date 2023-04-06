@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import { Header, StyledLink, Main } from './SharedLayout.styled';
+import { FaPlus } from 'react-icons/fa';
 
 export const SharedLayout = () => {
   return (
@@ -7,7 +8,10 @@ export const SharedLayout = () => {
       <Header>
         <nav>
           <StyledLink to="/">Home</StyledLink>
-          <StyledLink to="/products">Products</StyledLink>
+          <StyledLink to="products">Products</StyledLink>
+          <StyledLink to="addProduct">
+            <FaPlus />
+          </StyledLink>
         </nav>
       </Header>
       <Main>
