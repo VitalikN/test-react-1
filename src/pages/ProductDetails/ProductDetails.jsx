@@ -1,7 +1,8 @@
 import { BackLink } from 'components/BackLink/BackLink';
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useParams } from 'react-router-dom';
-import { selectProducts } from 'redux/selectors';
+import { productDetails } from 'redux/operations';
 import {
   Img,
   Container,
@@ -14,29 +15,21 @@ export const ProductDetails = () => {
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/';
 
+  const dispatch = useDispatch();
   const { productId } = useParams();
-  const products = useSelector(selectProducts);
+  const product = useSelector(state => state.products.productId);
+  console.log(product);
 
-  const visibleProduct = products.filter(
-    product => product.id === Number(productId)
-  );
+  useEffect(() => {
+    dispatch(productDetails(productId));
+  }, [dispatch, productId]);
 
   return (
     <div>
       <BackLink to={backLinkHref}>come back </BackLink>
       <>
-        {visibleProduct.map(
-          ({
-            id,
-            category,
-            images,
-            brand,
-            title,
-            description,
-            stock,
-            rating,
-            price,
-          }) => (
+        {product.map(
+          ({ id, images, brand, title, description, stock, rating, price }) => (
             <Container key={id}>
               <div>
                 <Img src={images[0]} alt={title} />
