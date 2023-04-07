@@ -1,15 +1,32 @@
 import { BackLink } from 'components/BackLink/BackLink';
-// import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useLocation, useSearchParams } from 'react-router-dom';
+import { searchProduct } from 'redux/operations';
+// import { selectVisibleProducts } from 'redux/selectors';
 
 export const Products = () => {
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/';
-  // const [searchParams, setSearchParams] = useSearchParams();
+  const dispatch = useDispatch();
 
-  // useEffect(() => {}, []);
-  // if (searchParams.get('searchQuery') === null) return;
-  // // const searchTitle = searchParams.get('searchQuery');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [query, setQuery] = useState('');
+  // const [searchProducts, setSearchProducts] = useState([]);
+
+  useEffect(() => {
+    if (searchParams.get('searchQuery') === null) return;
+    const searchTitle = searchParams.get('searchQuery');
+
+    dispatch(searchProduct(searchTitle));
+
+    // setSearchProducts();
+  }, [dispatch, searchParams]);
+
+  const handleOnChange = evt => {
+    setQuery(evt.target.value);
+    setSearchParams({ searchQuery: query });
+  };
 
   return (
     <div>
@@ -20,10 +37,11 @@ export const Products = () => {
           autoFocus
           placeholder="Search product"
           name="searchQuery"
-          // value={filter}
-          // onChange={handleFilter}
+          value={query}
+          onChange={handleOnChange}
         />
       </label>
+
       <BackLink to={backLinkHref}>come back </BackLink>
     </div>
   );

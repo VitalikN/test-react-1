@@ -17,7 +17,7 @@ const handleRejected = (state, action) => {
 const productsSlice = createSlice({
   name: 'products',
   initialState: {
-    productId: [],
+    productId: null,
     items: [],
     isLoading: false,
     error: null,
@@ -46,7 +46,7 @@ const productsSlice = createSlice({
     [addProduct.fulfilled](state, action) {
       state.isLoading = false;
       state.error = null;
-      state.items.push(action.payload);
+      state.items.unshift(action.payload);
     },
     [removeProduct.fulfilled](state, action) {
       state.isLoading = false;

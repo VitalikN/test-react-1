@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useParams } from 'react-router-dom';
 import { productDetails } from 'redux/operations';
+import { selectProductId } from 'redux/selectors';
 import {
   Img,
   Container,
@@ -17,36 +18,35 @@ export const ProductDetails = () => {
 
   const dispatch = useDispatch();
   const { productId } = useParams();
-  const product = useSelector(state => state.products.productId);
-  console.log(product);
+  const product = useSelector(selectProductId);
 
   useEffect(() => {
     dispatch(productDetails(productId));
   }, [dispatch, productId]);
+  if (!product) return;
+
+  const { id, images, brand, title, description, stock, rating, price } =
+    product;
 
   return (
     <div>
       <BackLink to={backLinkHref}>come back </BackLink>
       <>
-        {product.map(
-          ({ id, images, brand, title, description, stock, rating, price }) => (
-            <Container key={id}>
-              <div>
-                <Img src={images[0]} alt={title} />
-              </div>
-              <div>
-                <Title>
-                  {brand}: {title}
-                </Title>
+        <Container key={id}>
+          <div>
+            <Img src={images[0]} alt={title} />
+          </div>
+          <div>
+            <Title>
+              {brand}: {title}
+            </Title>
 
-                <Text>{description}</Text>
-                <Text>Stock: {stock}</Text>
-                <Text>Rating: {rating}</Text>
-                <TextPrice>Price: {price}$</TextPrice>
-              </div>
-            </Container>
-          )
-        )}
+            <Text>{description}</Text>
+            <Text>Stock: {stock}</Text>
+            <Text>Rating: {rating}</Text>
+            <TextPrice>Price: {price}$</TextPrice>
+          </div>
+        </Container>
       </>
     </div>
   );

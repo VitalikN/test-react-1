@@ -8,8 +8,8 @@ export const SharedLayout = () => {
       <Header>
         <nav>
           <StyledLink to="/">Home</StyledLink>
-          <StyledLink to="products">Products</StyledLink>
-          <StyledLink to="addProduct">
+          <StyledLink to="/products">Products</StyledLink>
+          <StyledLink to="/addProduct">
             <FaPlus />
           </StyledLink>
         </nav>

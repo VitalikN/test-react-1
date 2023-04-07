@@ -8,7 +8,7 @@ export const fetchProducts = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const { data } = await axios.get('/');
-
+      console.log(data);
       return data.products;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -20,6 +20,7 @@ export const addProduct = createAsyncThunk(
   async (newProduct, thunkAPI) => {
     try {
       const { data } = await axios.post('/products', newProduct);
+
       return data.products;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -33,10 +34,10 @@ export const searchProduct = createAsyncThunk(
   'products/searchProduct',
   async (searchProduct, thunkAPI) => {
     try {
-      const { data } = await axios.get(`/search?q=${searchProduct}`);
-      console.log(data);
+      const { data } = await axios.get(`/${searchProduct}`);
       console.log('data.products', data.products);
-      return data;
+
+      return data.products;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -61,6 +62,7 @@ export const productDetails = createAsyncThunk(
   async (productId, thunkAPI) => {
     try {
       const { data } = await axios.get(`/${productId}`);
+
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
