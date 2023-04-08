@@ -19,9 +19,9 @@ export const addProduct = createAsyncThunk(
   'products/addProduct',
   async (newProduct, thunkAPI) => {
     try {
-      const { data } = await axios.post('/products', newProduct);
-
-      return data.products;
+      const { data } = await axios.post('/add', newProduct);
+      console.log(data);
+      return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

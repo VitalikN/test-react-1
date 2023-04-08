@@ -17,7 +17,7 @@ import { removeProduct } from 'redux/operations';
 export const ProductsListMarkup = ({ products }) => {
   const location = useLocation();
   const dispatch = useDispatch();
-
+  console.log(products);
   const handleRemove = productId => {
     dispatch(removeProduct(productId));
   };
@@ -36,7 +36,13 @@ export const ProductsListMarkup = ({ products }) => {
               to={`/products/${id}`}
               state={{ from: location }}
             >
-              <Img src={`${images[0]}`} alt={title} width="200px" />
+              {/* <Img src={`${images[0]}`} alt={title} width="200px" /> */}
+
+              <Img
+                src={`${images?.length > 0 && images[0]}`}
+                alt={title}
+                width="200px"
+              />
 
               <Title>{brand}</Title>
               <Subject> {title}</Subject>
