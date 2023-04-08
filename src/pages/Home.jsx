@@ -1,18 +1,11 @@
 import { ProductsList } from 'components/ProductsList/ProductsList';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchProducts } from 'redux/operations';
+import { useSelector } from 'react-redux';
 import { selectError, selectIsLoading, selectProducts } from 'redux/selectors';
 
 export const Home = () => {
-  const dispatch = useDispatch();
   const products = useSelector(selectProducts);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
-
-  useEffect(() => {
-    dispatch(fetchProducts());
-  }, [dispatch]);
 
   return (
     <div>

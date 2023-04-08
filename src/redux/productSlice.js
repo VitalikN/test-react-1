@@ -41,7 +41,7 @@ const productsSlice = createSlice({
     [fetchProducts.fulfilled](state, action) {
       state.isLoading = false;
       state.error = null;
-      state.items = [...action.payload].reverse();
+      state.items = [...action.payload];
     },
     [addProduct.fulfilled](state, action) {
       state.isLoading = false;

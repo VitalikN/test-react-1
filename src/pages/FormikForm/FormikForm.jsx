@@ -1,10 +1,16 @@
-import shortid from 'shortid';
+import { nanoid } from 'nanoid';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { Formik } from 'formik';
 import { useLocation } from 'react-router-dom';
 
-import { Form, FormField, Input, ErrorMessage } from './FormikForm.styled';
+import {
+  Form,
+  FormField,
+  Input,
+  ErrorMessage,
+  Button,
+} from './FormikForm.styled';
 import { addProduct } from 'redux/operations';
 import { BackLink } from 'components/BackLink/BackLink';
 
@@ -20,13 +26,11 @@ const FormikSchema = Yup.object().shape({
 export const FormikForm = () => {
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/';
+
   const dispatch = useDispatch();
 
   const handleSubmit = newProduct => {
-    // const { brand: newBrand } = newProduct;
-    // const newProduct = evt.target;
     dispatch(addProduct(newProduct));
-    console.log(newProduct);
   };
 
   return (
@@ -35,7 +39,7 @@ export const FormikForm = () => {
 
       <Formik
         initialValues={{
-          id: shortid(),
+          id: nanoid(),
           brand: '',
           title: '',
           imageUrl: '',
@@ -47,7 +51,7 @@ export const FormikForm = () => {
           handleSubmit({
             ...values,
           });
-          // resetForm();
+          resetForm();
         }}
         validationSchema={FormikSchema}
       >
@@ -82,7 +86,7 @@ export const FormikForm = () => {
             <Input type="number" name="price" />
             <ErrorMessage component="span" name="price" />
           </FormField>
-          <button type="submit">Save product</button>
+          <Button type="submit">Save product</Button>
         </Form>
       </Formik>
     </div>
