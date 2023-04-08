@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { searchProduct } from 'redux/operations';
 import { Container, Input, Label } from './Products.styled';
-// import { selectVisibleProducts } from 'redux/selectors';
 
 export const Products = () => {
   const location = useLocation();
@@ -13,23 +12,19 @@ export const Products = () => {
 
   const [searchParams, setSearchParams] = useSearchParams();
   const [query, setQuery] = useState('');
-  const [searchProducts, setSearchProducts] = useState(null);
 
   useEffect(() => {
-    if (searchParams.get('searchQuery') === null) return;
     const searchTitle = searchParams.get('searchQuery');
+    if (!searchTitle) return;
 
-    const results = dispatch(searchProduct(searchTitle));
-
-    setSearchProducts(results);
+    dispatch(searchProduct(searchTitle));
   }, [dispatch, searchParams]);
 
   const handleOnChange = evt => {
     setQuery(evt.target.value);
-    setSearchParams({ searchQuery: query });
+    setSearchParams({ searchQuery: evt.target.value });
   };
 
-  console.log(searchProducts);
   return (
     <>
       <BackLink to={backLinkHref}>come back </BackLink>
