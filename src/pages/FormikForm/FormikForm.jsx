@@ -1,10 +1,12 @@
-import { BackLink } from 'components/BackLink/BackLink';
-import { Formik } from 'formik';
-import { useLocation } from 'react-router-dom';
-import { Form, FormField, Input, ErrorMessage } from './FormikForm.styled';
+import shortid from 'shortid';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
+import { Formik } from 'formik';
+import { useLocation } from 'react-router-dom';
+
+import { Form, FormField, Input, ErrorMessage } from './FormikForm.styled';
 import { addProduct } from 'redux/operations';
+import { BackLink } from 'components/BackLink/BackLink';
 
 const FormikSchema = Yup.object().shape({
   brand: Yup.string().required(),
@@ -33,6 +35,7 @@ export const FormikForm = () => {
 
       <Formik
         initialValues={{
+          id: shortid(),
           brand: '',
           title: '',
           imageUrl: '',
