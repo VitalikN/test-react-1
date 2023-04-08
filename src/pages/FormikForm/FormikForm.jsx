@@ -13,6 +13,7 @@ import {
 } from './FormikForm.styled';
 import { addProduct } from 'redux/operations';
 import { BackLink } from 'components/BackLink/BackLink';
+import { ProductsList } from 'components/ProductsList/ProductsList';
 
 const FormikSchema = Yup.object().shape({
   brand: Yup.string().required(),
@@ -89,6 +90,7 @@ export const FormikForm = () => {
           <Button type="submit">Save product</Button>
         </Form>
       </Formik>
+      <ProductsList />
     </div>
   );
 };

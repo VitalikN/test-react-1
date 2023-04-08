@@ -35,8 +35,8 @@ export const searchProduct = createAsyncThunk(
   async (searchProduct, thunkAPI) => {
     try {
       console.log(searchProduct);
-      const { data } = await axios.get(`/${searchProduct}`);
-      // console.log('data.products', data.products);
+      const { data } = await axios.get(`/search?q=${searchProduct}&limit=100`);
+      console.log('data.products', data.products);
 
       return data.products;
     } catch (error) {

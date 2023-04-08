@@ -5,16 +5,8 @@ import { Route, Routes } from 'react-router-dom';
 import { FormikForm } from 'pages/FormikForm/FormikForm';
 import { NotFound } from './NotFound';
 import { SharedLayout } from './SharedLayout/SharedLayout';
-import { fetchProducts } from 'redux/operations';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 
 export const App = () => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchProducts());
-  }, [dispatch]);
-
   return (
     <div>
       <Routes>
