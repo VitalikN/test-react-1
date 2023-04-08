@@ -2,7 +2,6 @@ import { nanoid } from 'nanoid';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { Formik } from 'formik';
-import { useLocation } from 'react-router-dom';
 
 import {
   Form,
@@ -12,7 +11,6 @@ import {
   Button,
 } from './FormikForm.styled';
 import { addProduct } from 'redux/operations';
-import { BackLink } from 'components/BackLink/BackLink';
 import { ProductsList } from 'components/ProductsList/ProductsList';
 
 const FormikSchema = Yup.object().shape({
@@ -25,9 +23,6 @@ const FormikSchema = Yup.object().shape({
 });
 
 export const FormikForm = () => {
-  const location = useLocation();
-  const backLinkHref = location.state?.from ?? '/';
-
   const dispatch = useDispatch();
 
   const handleSubmit = newProduct => {
@@ -36,8 +31,6 @@ export const FormikForm = () => {
 
   return (
     <div>
-      <BackLink to={backLinkHref}>come back </BackLink>
-
       <Formik
         initialValues={{
           id: nanoid(),

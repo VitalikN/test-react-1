@@ -7,7 +7,7 @@ export const fetchProducts = createAsyncThunk(
   'products/fetchAll',
   async (_, thunkAPI) => {
     try {
-      const { data } = await axios.get('?limit=20');
+      const { data } = await axios.get('?limit=40');
 
       return data.products;
     } catch (error) {
@@ -20,7 +20,6 @@ export const addProduct = createAsyncThunk(
   async (newProduct, thunkAPI) => {
     try {
       const { data } = await axios.post('/add', newProduct);
-      console.log(data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -28,15 +27,11 @@ export const addProduct = createAsyncThunk(
   }
 );
 
-// fetch('https://dummyjson.com/products/search?q=phone');
-
 export const searchProduct = createAsyncThunk(
   'products/searchProduct',
   async (searchProduct, thunkAPI) => {
     try {
-      console.log(searchProduct);
       const { data } = await axios.get(`/search?q=${searchProduct}&limit=100`);
-      console.log('data.products', data.products);
 
       return data.products;
     } catch (error) {
