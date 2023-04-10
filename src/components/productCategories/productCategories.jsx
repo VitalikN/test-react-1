@@ -3,23 +3,21 @@ import { useDispatch } from 'react-redux';
 import { productCategories } from 'redux/operations';
 
 export const ProductCategories = () => {
-  const [searchCategories, setSearchCategories] = useState('');
-
   const dispatch = useDispatch();
-
-  //   useEffect(() => {
-  //     dispatch(productCategories());
-  //   }, [dispatch]);
+  const [searchCategories, setSearchCategories] = useState('');
 
   const handleSubmit = evt => {
     evt.preventDefault();
     dispatch(productCategories(evt.target.value));
+
+    console.log('11 рядок ', evt.currentTarget.value);
     console.log(searchCategories);
     setSearchCategories('');
   };
 
   const onHandleChange = evt => {
     setSearchCategories(evt.target.value);
+    console.log('18hz', evt.target.value);
   };
 
   return (
@@ -28,20 +26,20 @@ export const ProductCategories = () => {
 
       <select
         aria-label="select"
-        name="region"
+        name="categorie"
         onChange={onHandleChange}
         required
       >
         <option
-        //   selected disabled defaultValue="categories"
+        //   selected disabled defaultValue=""
         >
           All Categories
         </option>
 
-        {/* regions && */}
-        {/* regions.map(({ id, name, value }) => ( */}
-        <option value="">Categories</option>
-        {/* ))} */}
+        {/* {categories &&
+                  categories.map(categorie => */}
+        <option value="">smartphones</option>
+        {/* )} */}
       </select>
     </form>
   );

@@ -74,7 +74,8 @@ export const productCategories = createAsyncThunk(
     try {
       const { data } = await axios.get(`/category/${productCategories}`);
       console.log(data);
-      return data;
+      console.log(productCategories);
+      return data.products;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
