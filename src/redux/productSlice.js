@@ -5,6 +5,7 @@ import {
   removeProduct,
   productDetails,
   searchProduct,
+  productCategories,
 } from './operations';
 
 const handlePending = state => {
@@ -63,6 +64,14 @@ const productsSlice = createSlice({
       state.productId = action.payload;
     },
     [searchProduct.fulfilled](state, action) {
+      state.isLoading = false;
+      state.error = null;
+      state.items = action.payload;
+    },
+    [productCategories.pending]: handlePending,
+    [productCategories.rejected]: handleRejected,
+
+    [productCategories.fulfilled](state, action) {
       state.isLoading = false;
       state.error = null;
       state.items = action.payload;

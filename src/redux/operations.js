@@ -8,7 +8,7 @@ export const fetchProducts = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const { data } = await axios.get('?limit=40');
-
+      // console.log(data);
       return data.products;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -59,6 +59,21 @@ export const productDetails = createAsyncThunk(
     try {
       const { data } = await axios.get(`/${productId}`);
 
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+// https://dummyjson.com/products/category/smartphones'
+
+export const productCategories = createAsyncThunk(
+  'products/productCategories',
+  async (productCategories, thunkAPI) => {
+    try {
+      const { data } = await axios.get(`/category/${productCategories}`);
+      console.log(data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

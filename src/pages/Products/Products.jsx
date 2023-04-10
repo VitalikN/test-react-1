@@ -7,11 +7,9 @@ import { ProductsList } from 'components/ProductsList/ProductsList';
 
 export const Products = () => {
   const dispatch = useDispatch();
-
   const [searchParams, setSearchParams] = useSearchParams();
-  const [query, setQuery] = useState('');
-
   const searchTitle = searchParams.get('searchQuery');
+  const [query, setQuery] = useState(searchTitle || '');
 
   useEffect(() => {
     if (!searchTitle) return;
@@ -34,7 +32,7 @@ export const Products = () => {
             autoFocus
             placeholder="Search product"
             name="searchQuery"
-            value={query ?? searchTitle}
+            value={query}
             onChange={handleOnChange}
           />
         </Label>
