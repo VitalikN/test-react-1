@@ -1,45 +1,44 @@
-import { useState } from 'react';
-import { Form, Select } from './ProductCategories.styled';
+import { Form, Select, Button } from './ProductCategories.styled';
 import { useDispatch } from 'react-redux';
 import { productCategories } from 'redux/operations';
+import { useSearchParams } from 'react-router-dom';
+import { GrSearch } from 'react-icons/gr';
 
 export const ProductCategories = ({ categories }) => {
   const dispatch = useDispatch();
-  const [searchCategories, setSearchCategories] = useState('');
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    const selectElement = event.target.elements.categorie;
-    const selectedValue = selectElement.value;
-    setSearchCategories('');
-    dispatch(productCategories(selectedValue));
-  };
+  const [, setSearchParams] = useSearchParams();
 
-  const onHandleChange = evt => {
-    setSearchCategories(evt.target.value);
+  const handleSubmit = evt => {
+    evt.preventDefault();
+    const selectElement = evt.target.elements.categorie;
+    const Category = selectElement.value;
+    setSearchParams({ category: Category });
+
+    dispatch(productCategories(Category));
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <button type="submit">Search</button>
+    <>
+      <Form onSubmit={handleSubmit}>
+        <Select aria-label="select" name="categorie" required>
+          <option
+          //   selected disabled defaultValue=""
+          >
+            all
+          </option>
 
-      <Select
-        aria-label="select"
-        name="categorie"
-        onChange={onHandleChange}
-        required
-      >
-        <option selected disabled defaultValue="">
-          all
-        </option>
-
-        {categories &&
-          categories.map(categorie => (
-            <option key={categorie} value={categorie}>
-              {categorie}
-            </option>
-          ))}
-      </Select>
-    </Form>
+          {categories &&
+            categories.map(categorie => (
+              <option key={categorie} value={categorie}>
+                {categorie}
+              </option>
+            ))}
+        </Select>
+        <Button type="submit">
+          <GrSearch />
+        </Button>
+      </Form>
+    </>
   );
 };

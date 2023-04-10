@@ -3,7 +3,7 @@ import { ProductDetails } from 'pages/ProductDetails/ProductDetails';
 import { Products } from 'pages/Products/Products';
 import { Route, Routes } from 'react-router-dom';
 import { FormikForm } from 'pages/FormikForm/FormikForm';
-import { NotFound } from './NotFound';
+import { NotFound } from './NotFound/NotFound';
 import { SharedLayout } from './SharedLayout/SharedLayout';
 
 export const App = () => {
