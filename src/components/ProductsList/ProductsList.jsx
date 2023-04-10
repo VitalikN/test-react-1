@@ -4,7 +4,6 @@ import { selectProducts } from 'redux/selectors';
 
 export const ProductsList = () => {
   const products = useSelector(selectProducts);
-
   return (
     <div>
       <ProductsListMarkup products={products} />
