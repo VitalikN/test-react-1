@@ -8,7 +8,6 @@ export const fetchProducts = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const { data } = await axios.get('?limit=40');
-      // console.log(data);
       return data.products;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

@@ -22,8 +22,6 @@ export const ProductsListMarkup = ({ products }) => {
     dispatch(removeProduct(productId));
   };
 
-  // const imgDefault = '../imgdefault.png';
-
   return (
     <div>
       <List>
@@ -43,7 +41,6 @@ export const ProductsListMarkup = ({ products }) => {
                 src={`${images?.length > 0 && images[0]}`}
                 alt={title}
                 width="200px"
-                // src={imgDefault}
               />
 
               <Title>{brand}</Title>

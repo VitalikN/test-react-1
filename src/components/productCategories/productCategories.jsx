@@ -15,11 +15,10 @@ export const ProductCategories = ({ categories }) => {
     const Category = selectElement.value;
     setSearchParams({ category: Category });
 
-    if (Category) {
-      dispatch(productCategories(Category));
-    }
     if (Category === 'allCategories') {
       dispatch(fetchProducts());
+    } else {
+      dispatch(productCategories(Category));
     }
   };
 
@@ -32,19 +31,11 @@ export const ProductCategories = ({ categories }) => {
           defaultValue="allCategories"
           required
         >
-          {/* { <ProductsList/>  */}
-          <option
-            // selected
-            // disabled
-            // defaultValue="no-value"
-            value="allCategories"
-          >
-            All Categories
-          </option>
+          <option value="allCategories">All Categories</option>
           {categories &&
             categories.map(categorie => (
               <option key={categorie} value={categorie}>
-                {categorie}
+                {categorie[0].toUpperCase() + categorie.slice(1)}
               </option>
             ))}
         </Select>
