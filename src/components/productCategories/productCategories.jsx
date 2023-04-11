@@ -1,6 +1,6 @@
 import { Form, Select, Button } from './ProductCategories.styled';
 import { useDispatch } from 'react-redux';
-import { productCategories } from 'redux/operations';
+import { fetchProducts, productCategories } from 'redux/operations';
 import { useSearchParams } from 'react-router-dom';
 import { GrSearch } from 'react-icons/gr';
 
@@ -15,19 +15,32 @@ export const ProductCategories = ({ categories }) => {
     const Category = selectElement.value;
     setSearchParams({ category: Category });
 
-    dispatch(productCategories(Category));
+    if (Category) {
+      dispatch(productCategories(Category));
+    }
+    if (Category === 'allCategories') {
+      dispatch(fetchProducts());
+    }
   };
 
   return (
     <>
       <Form onSubmit={handleSubmit}>
-        <Select aria-label="select" name="categorie" required>
+        <Select
+          aria-label="select"
+          name="categorie"
+          defaultValue="allCategories"
+          required
+        >
+          {/* { <ProductsList/>  */}
           <option
-          //   selected disabled defaultValue=""
+            // selected
+            // disabled
+            // defaultValue="no-value"
+            value="allCategories"
           >
-            all
+            All Categories
           </option>
-
           {categories &&
             categories.map(categorie => (
               <option key={categorie} value={categorie}>

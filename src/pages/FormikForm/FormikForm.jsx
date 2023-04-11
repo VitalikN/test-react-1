@@ -61,7 +61,7 @@ export const FormikForm = () => {
             <ErrorMessage component="span" name="title" />
           </FormField>
           <FormField>
-            Year of publication
+            Image
             <Input name="imageUrl" placeholder="https://www.google.com" />
             <ErrorMessage component="span" name="imageUrl" />
           </FormField>
