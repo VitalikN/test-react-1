@@ -11,9 +11,5 @@ export const CategoryList = () => {
   useEffect(() => {
     dispatch(fetchCategories());
   }, [dispatch]);
-  return (
-    <div>
-      <ProductCategories categories={categories} />
-    </div>
-  );
+  return <div>{<ProductCategories categories={categories} />}</div>;
 };

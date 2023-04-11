@@ -6,7 +6,6 @@ import { GrSearch } from 'react-icons/gr';
 
 export const ProductCategories = ({ categories }) => {
   const dispatch = useDispatch();
-
   const [, setSearchParams] = useSearchParams();
 
   const handleSubmit = evt => {
