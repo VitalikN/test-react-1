@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCategories } from 'redux/operations';
 import { selectCategories } from 'redux/selectors';
-import { ProductCategories } from './ProductCategories';
+import { ProductCategoriesMarkup } from '../ProductCategoriesMarkup/ProductCategories';
 
 export const CategoryList = () => {
   const categories = useSelector(selectCategories);
@@ -11,5 +11,5 @@ export const CategoryList = () => {
   useEffect(() => {
     dispatch(fetchCategories());
   }, [dispatch]);
-  return <div>{<ProductCategories categories={categories} />}</div>;
+  return <div>{<ProductCategoriesMarkup categories={categories} />}</div>;
 };

@@ -4,7 +4,7 @@ import { fetchProducts, productCategories } from 'redux/operations';
 import { useSearchParams } from 'react-router-dom';
 import { GrSearch } from 'react-icons/gr';
 
-export const ProductCategories = ({ categories }) => {
+export const ProductCategoriesMarkup = ({ categories }) => {
   const dispatch = useDispatch();
   const [, setSearchParams] = useSearchParams();
 
