@@ -40,6 +40,12 @@ const productsSlice = createSlice({
     [searchProduct.pending]: handlePending,
     [searchProduct.rejected]: handleRejected,
 
+    [fetchCategories.pending]: handlePending,
+    [fetchCategories.rejected]: handleRejected,
+
+    [productCategories.pending]: handlePending,
+    [productCategories.rejected]: handleRejected,
+
     [fetchProducts.fulfilled](state, action) {
       state.isLoading = false;
       state.error = null;
@@ -69,17 +75,12 @@ const productsSlice = createSlice({
       state.error = null;
       state.items = action.payload;
     },
-    [fetchCategories.pending]: handlePending,
-    [fetchCategories.rejected]: handleRejected,
 
     [fetchCategories.fulfilled](state, action) {
       state.isLoading = false;
       state.error = null;
       state.categories = action.payload;
     },
-
-    [productCategories.pending]: handlePending,
-    [productCategories.rejected]: handleRejected,
 
     [productCategories.fulfilled](state, action) {
       state.isLoading = false;
