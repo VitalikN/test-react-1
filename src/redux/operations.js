@@ -7,7 +7,7 @@ export const fetchProducts = createAsyncThunk(
   'products/fetchAll',
   async (_, thunkAPI) => {
     try {
-      const { data } = await axios.get('?limit=40');
+      const { data } = await axios.get('?limit=20');
       return data.products;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -82,8 +82,6 @@ export const productCategories = createAsyncThunk(
   async (productCategories, thunkAPI) => {
     try {
       const { data } = await axios.get(`/category/${productCategories}`);
-      console.log(data.products);
-      console.log('productCategories', productCategories);
       return data.products;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

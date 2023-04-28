@@ -86,7 +86,7 @@ const productsSlice = createSlice({
       state.isLoading = false;
       state.error = null;
       state.items = action.payload;
-    },
+      },     
   },
 });
 
